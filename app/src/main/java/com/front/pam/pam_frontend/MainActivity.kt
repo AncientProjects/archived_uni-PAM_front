@@ -13,19 +13,19 @@ class MainActivity : AppCompatActivity() {
 
         val booksButton : Button = findViewById(R.id.bookListButton)
         booksButton.setOnClickListener {
-            val intent = Intent(this, BookList::class.java)
+            val intent = Intent(this, BookListActivity::class.java)
             startActivity(intent)
         }
 
         val authorsButton : Button = findViewById(R.id.authorListButton)
         authorsButton.setOnClickListener {
-            val intent = Intent(this, Authors::class.java)
+            val intent = Intent(this, AuthorsActivity::class.java)
             startActivity(intent)
         }
 
         val infoButton : Button = findViewById(R.id.infoButton)
         infoButton.setOnClickListener {
-            val intent = Intent(this, Info::class.java)
+            val intent = Intent(this, InfoActivity::class.java)
             startActivity(intent)
         }
     }

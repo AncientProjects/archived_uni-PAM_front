@@ -29,6 +29,7 @@
         <activity android:name=".BookListActivity" />
         <activity android:name=".AuthorsActivity" />
         <activity android:name=".InfoActivity" />
+        <activity android:name=".CreateBookActivity" />
     </application>
 
 </manifest>

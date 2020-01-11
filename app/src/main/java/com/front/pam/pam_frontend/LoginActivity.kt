@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import com.front.pam.pam_frontend.model.Connection
 import com.front.pam.pam_frontend.model.CookieContainer
 import com.front.pam.pam_frontend.model.MyRequest
+import com.front.pam.pam_frontend.model.Utils
 import com.google.gson.Gson
 import okhttp3.*
 import java.io.IOException
@@ -15,7 +17,7 @@ import java.io.IOException
 class LoginActivity : AppCompatActivity() {
 
     private var request = MyRequest();
-    private var url = "http://83.22.80.5:8081/RestWithMongo/api/auth/login"
+    //private var url = "http://83.22.80.5:8081/RestWithMongo/api/auth/login"
     private var gson = Gson()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,22 +25,36 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         var loginInput : EditText = findViewById(R.id.nickInput)
-
         var passwdInput : EditText = findViewById(R.id.passwordInput)
-
-        var errorLabel : TextView = findViewById(R.id.errorLabel)
+        var errorLabel : TextView = findViewById(R.id.loginErrorLabel)
 
         val loginButton: Button = findViewById(R.id.loginButton)
         loginButton.setOnClickListener {
             println(loginInput.text)
             println(passwdInput.text)
+
+            val nickname = loginInput.text.toString()
+            val pwd = passwdInput.text.toString()
+
+            if (nickname == null || nickname.isEmpty()) {
+                errorLabel.text = "Fill all fields"
+                return@setOnClickListener
+            }
+
+            if (pwd == null || pwd.isEmpty()) {
+                errorLabel.text = "Fill all fields"
+                return@setOnClickListener
+            }
+
+            val pwdHash = Utils().toMD5Hash(pwd)
+
             var httpUrl = HttpUrl.Builder()
                 .scheme("http")
-                .host("83.22.80.5")
-                .port(8081)
+                .host(Connection.URL)
+                .port(Connection.PORT)
                 .addPathSegments("RestWithMongo/api/auth/login")
-                .addQueryParameter("nickname", "batman")
-                .addQueryParameter("pwdHash", "8ee60a2e00c90d7e00d5069188dc115b")
+                .addQueryParameter("nickname", nickname)
+                .addQueryParameter("pwdHash", pwdHash)
                 .build()
 
             var requestBuilder = Request.Builder()
@@ -55,7 +71,8 @@ class LoginActivity : AppCompatActivity() {
                         tokens.forEach {
                             var token = it
                             if (token.startsWith("JSESSIONID")) {
-                                sessionId = token.replace("JSESSIONID=", "")
+                                //sessionId = token.replace("JSESSIONID=", "")
+                                sessionId = token
                                 CookieContainer.setSessionId(sessionId)
                                 println(sessionId)
 
@@ -63,6 +80,8 @@ class LoginActivity : AppCompatActivity() {
 
                                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
                                 startActivity(intent)
+                                // tutaj chyba musi byc return
+                                //return@forEach
                             }
                         }
                     }

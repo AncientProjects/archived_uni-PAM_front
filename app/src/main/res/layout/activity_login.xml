@@ -68,7 +68,7 @@
             app:layout_constraintTop_toBottomOf="@+id/passwordInput" />
 
     <TextView
-            android:id="@+id/errorLabel"
+            android:id="@+id/loginErrorLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"

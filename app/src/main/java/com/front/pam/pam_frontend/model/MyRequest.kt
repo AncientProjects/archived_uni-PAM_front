@@ -42,6 +42,12 @@ class MyRequest {
         return call
     }
 
+    fun POST(request: Request, callback: Callback): Call{
+        val call = client.newCall(request)
+        call.enqueue(callback)
+        return call
+    }
+
     companion object {
         val JSON = MediaType.parse("application/json; charset=utf-8")
     }

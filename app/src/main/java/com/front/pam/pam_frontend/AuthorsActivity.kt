@@ -15,7 +15,7 @@ import java.io.IOException
 class AuthorsActivity : AppCompatActivity() {
 
     private var request = MyRequest()
-    private var url : String = "http://83.22.80.5:8081/RestWithMongo/api/author"
+    private var url : String = "http://83.22.69.24:8081/RestWithMongo/api/author"
     private var gson = Gson()
 
     override fun onCreate(savedInstanceState: Bundle?) {

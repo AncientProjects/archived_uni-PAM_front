@@ -5,6 +5,7 @@ import android.support.design.widget.TextInputEditText
 import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import android.widget.Toast
+import com.front.pam.pam_frontend.model.Author
 
 class CreateBookActivity: AppCompatActivity(){
 
@@ -13,17 +14,19 @@ class CreateBookActivity: AppCompatActivity(){
         setContentView(R.layout.activity_create_book)
 
 
+        val author = intent.getSerializableExtra(CustomViewHolderBookList.BOOK_AUTHOR) as? Author
+
         //przykład pobrania wartości poprzez intent
-        val navbarTitle = intent.getStringExtra(CustomViewHolder.AUTHOR_NAME)
+        val navbarTitle = author?.firstName + " " + author?.lastName
         supportActionBar?.title = navbarTitle
 
-        val authorId = intent.getStringExtra(CustomViewHolder.AUTHOR_ID)
 
         val textInputBookTitle = findViewById<TextInputEditText>(R.id.text_input_book)
 
         val submit = findViewById<Button>(R.id.submit)
-        if(submit != null && textInputBookTitle != null){
-            submit.setOnClickListener {
+
+        submit.setOnClickListener {
+            if(textInputBookTitle != null){
                 val bookTitle = textInputBookTitle.text.toString()
 
                 //TODO: tutaj post na tworzenie książki

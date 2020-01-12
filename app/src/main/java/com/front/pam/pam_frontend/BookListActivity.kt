@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.design.widget.TextInputEditText
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import com.front.pam.pam_frontend.model.Author
 import com.front.pam.pam_frontend.model.Book
 import kotlinx.android.synthetic.main.activity_book_list.*
 
@@ -24,8 +25,10 @@ class BookListActivity : AppCompatActivity() {
 
         recyclerView_books.layoutManager = LinearLayoutManager(this)
 
+        val author1 = Author(authorId = "chujkurwa", firstName = "jprdl", lastName = "kurwadzialaj")
+
         //TODO: tutaj endpoint
-        val books = listOf(Book("First"), Book("Second"), Book("Third"), Book("Fourth"), Book("Another One"), Book("Another One"), Book("Another One"), Book("Another One"), Book("Another One"), Book("Another One"), Book("Another One"), Book("Another One"), Book("Another One"))
+        val books = listOf(Book(title = "First", author = author1), Book(title = "Second", author = author1), Book(title = "Third", author = author1), Book(title = "Fourth", author = author1), Book(title = "Another One", author = author1), Book(title = "Another One"), Book(title = "Another One"), Book(title = "Another One"), Book(title = "Another One"), Book(title = "Another One"), Book(title = "Another One"), Book(title = "Another One"), Book(title = "Another One"), Book(title = "Another One"), Book(title = "Another One"), Book(title = "Another One"), Book(title = "Another One"), Book(title = "Another One"), Book(title = "Another One"), Book(title = "Another One"), Book(title = "Another One"), Book(title = "Another One"), Book(title = "Another One"), Book(title = "Another One"), Book(title = "Another One"), Book(title = "Another One"), Book(title = "Another One"))
 
 
 

@@ -9,9 +9,9 @@ data class Book(val bookId : String = "",
                 val ratingAvg : Double = -1.0) {
 }
 
-data class BooksList(val books : List<Book> = emptyList()){
+data class BooksList(val booksTO : List<Book> = emptyList()){
 
     fun get(index : Int) : Book? {
-        return books.elementAtOrNull(index);
+        return booksTO.elementAtOrNull(index)
     }
 }

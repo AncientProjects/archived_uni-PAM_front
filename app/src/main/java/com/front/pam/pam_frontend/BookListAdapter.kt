@@ -36,16 +36,17 @@ class BookListAdapter(var books: List<Book>): RecyclerView.Adapter<CustomViewHol
 class CustomViewHolderBookList(val view: View, var book: Book? = null): RecyclerView.ViewHolder(view) {
 
     companion object {
-        val BOOK_TITLE = "AUTHOR_NAME"
-        val AUTHOR_ID = "AUTHOR_ID"
+        val BOOK_TITLE = "BOOK_TITLE"
+        val BOOK_AUTHOR = "BOOK_AUTHOR"
     }
 
     init {
         view.setOnClickListener {
-            val intent = Intent(view.context, CreateBookActivity::class.java)
+            val intent = Intent(view.context, BookActivity::class.java)
 
             //przekazanie imienia autora, żeby się u góry wyświetliło na pasku
             intent.putExtra(BOOK_TITLE, book?.title)
+            intent.putExtra(BOOK_AUTHOR, book?.author)
             //tutaj przekazanie poprzez intent do CreateBookActivity ID Autora
 //            intent.putExtra(AUTHOR_ID, author?.authorId)
 
